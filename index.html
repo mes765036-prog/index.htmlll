@@ -440,8 +440,15 @@ async function hs(t){try{const b=await crypto.subtle.digest('SHA-256',new TextEn
 // ثم الصق إعدادات الويب (firebaseConfig) هنا، وقواعد Firestore:
 //   match /lb/{u}{allow read:if true;allow write:if request.auth!=null&&request.auth.uid==u}
 //   match /users/{u}{allow read,write:if request.auth!=null&&request.auth.uid==u}
-const FB_CFG={apiKey:'AIzaSyAdR_Z66n1zaje6EywhmxDMVPk1__H3XVY',authDomain:'black-night-y.firebaseapp.com',projectId:'black-night-y',storageBucket:'black-night-y.firebasestorage.app',messagingSenderId:'398899468275',appId:'1:398899468275:web:707f9cb74ea11188e3a486',measurementId:'G-GH13VDQ2LD'};
-let FB=null,FBU=null,fbPr=null;
+const FB_CFG={
+  apiKey:'AIzaSyAXfhFlJ_buB8zJJ9AYVDUwzwyv_-fErdw',
+  authDomain:'the-other-side-4f010.firebaseapp.com',
+  projectId:'the-other-side-4f010',
+  storageBucket:'the-other-side-4f010.firebasestorage.app',
+  messagingSenderId:'302369377160',
+  appId:'1:302369377160:web:9b96b9e1d0bd05aac1c83d',
+  measurementId:'G-EYMXRYCZTV'
+};let FB=null,FBU=null,fbPr=null;
 const fbOn=()=>!!(FB_CFG.apiKey&&FB_CFG.projectId),lsc=s=>new Promise((ok,no)=>{const e=document.createElement('script');e.src=s;e.onload=ok;e.onerror=no;document.head.appendChild(e)}),KEEPK=['ui','tm','ms','vol','sfx','sz','fog','lang','dif'];
 function fbInit(){if(!fbOn())return Promise.reject('cfg');return fbPr||(fbPr=(async()=>{const b='https://www.gstatic.com/firebasejs/10.12.2/';await lsc(b+'firebase-app-compat.js');await Promise.all([lsc(b+'firebase-auth-compat.js'),lsc(b+'firebase-firestore-compat.js')]);firebase.initializeApp(FB_CFG);FB={a:firebase.auth(),d:firebase.firestore()};FB.a.onAuthStateChanged(gUser);return FB})().catch(e=>{fbPr=null;throw e}))}
 const keepS=()=>{const k={};KEEPK.forEach(x=>{if(S[x]!==undefined)k[x]=S[x]});return k};
@@ -451,8 +458,7 @@ if(!document.body.classList.contains('ing')){try{const d=await FB.d.collection('
 sv();upd();accUI();lbPub()}
 async function gLogin(){const m=$('acM');if(!fbOn()){m.textContent='⚠ تسجيل قوقل غير مفعّل بعد (يحتاج ربط مشروع Firebase). تقدر تلعب كضيف.';return}
 if(location.protocol=='file:'){m.textContent='⚠ تسجيل قوقل لا يعمل من ملف على الجهاز. ارفع اللعبة على رابط https وافتحها منه.';return}
-try{m.textContent='جارٍ فتح قوقل...';await fbInit();const p=new firebase.auth.GoogleAuthProvider();p.setCustomParameters({prompt:'select_account'});try{await FB.a.signInWithPopup(p)}catch(e){if(e&&(e.code=='auth/popup-blocked'||e.code=='auth/operation-not-supported-in-this-environment'))await FB.a.signInWithRedirect(p);else throw e}m.textContent=''}catch(e){m.textContent='تعذّر تسجيل الدخول'+(e&&e.code?' ('+e.code+')':'')}}
-async function accOut(){try{await lbPub()}catch(e){}try{if(FB)await FB.a.signOut()}catch(e){}ACC=null;FBU=null;S=Object.assign(DEF(),keepS());AI=DEFAI();$('nm').value='';apply();sv();upd();accUI()}
+await FB.a.signInWithPopup(p);async function accOut(){try{await lbPub()}catch(e){}try{if(FB)await FB.a.signOut()}catch(e){}ACC=null;FBU=null;S=Object.assign(DEF(),keepS());AI=DEFAI();$('nm').value='';apply();sv();upd();accUI()}
 function accUI(){const L=!!ACC;$('acF').style.display=L?'none':'flex';$('acI').style.display=L?'flex':'none';if(L){const t=S.st||{};$('acD').innerHTML='👤 '+ACC+'<br>🪙 '+S.coins+' &nbsp;|&nbsp; 🏃 '+(t.wr|0)+' &nbsp;|&nbsp; 👹 '+(t.wm|0)+' &nbsp;|&nbsp; 🎮 '+(t.g|0)}$('acM').textContent=(L||fbOn())?'':'⚠ تسجيل قوقل غير مفعّل بعد (يحتاج ربط مشروع Firebase). تقدر تلعب كضيف.'}
 let LBT='t',LBF=0,LBN=0;
 const LBL={c:'🪙 الأغنى',r:'🏃 أكثر فوزاً كهارب',m:'👹 أكثر فوزاً كوحش',t:'🏆 المجموع'},DNM=['','😌 سهل','⚖ متوسط','🔥 صعب','💀 مستحيل'];
